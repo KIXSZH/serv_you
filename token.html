@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Your Token</title>
+    <link rel="icon" href="favicon.ico" />
+    <style>
+      .ticket {
+        height:300px;
+        width: 400px;
+        margin: 0 auto;
+        margin-top: 110px;
+        margin-bottom:75px;
+        background-color: lightyellow;
+        border-radius: 10px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        animation: slide-in 1s ease-out;
+      }
+
+      @keyframes slide-in {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(2%);
+          opacity: 1;
+        }
+      }
+
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .header img {
+        height: 50px;
+      }
+
+      .header h1 {
+        font-size: 24px;
+        font-weight: bold;
+        margin: 0;
+      }
+
+      .content {
+        font-size: 18px;
+      }
+
+      .row {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+
+      .column {
+        font-weight: bold;
+      }
+
+      .product-list {
+        margin-top: 20px;
+        
+      }
+
+      .product-list h2 {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .product-list ol {
+       
+        padding-left: 50px;
+      }
+
+      .product-list li {
+        margin-bottom: 5px;
+       
+      }
+
+      .product-list li::before {
+        color: #000;
+        font-weight: bold;
+      }
+
+      @media print {
+        .ticket {
+          box-shadow: none;
+        }
+      }
+      button {
+			color: #ffffff;
+			background-color: #2d63c8;
+			font-size: 15px;
+			border: 0px solid #2d63c8;
+			border-radius: 73px;
+			padding: 10px 20px;
+			letter-spacing: 2px;
+			cursor: pointer;
+      float:right;
+      bottom:0;
+      
+		}
+		button:hover {
+			color: #2d63c8;
+			background-color: #00eeff;
+		}
+    #ticket-number{
+      f
+      font-weight:bold;
+    }
+    
+    </style>
+  </head>
+  <body>
+    <div class="ticket">
+      <div class="header">
+        <img src="img/logo.png" alt="Logo">
+        <h1>Token</h1>
+      </div>
+      <div class="content">
+        <div class="row">
+          <div class="column">Order Id:</div>
+          <div id="ticket-number"></div>
+        </div>
+        <div class="row">
+          <div class="column">Date:</div>
+          <div id="date"></div>
+        </div>
+        <div class="row">
+          <div class="column">Time:</div>
+          <div id="time"></div>
+        </div>
+        <div class="product-list">
+           <h2>The delivery will be done within your given dispatch time !!!</h2>
+        </div>
+        <div>
+        <button  type="submit" name="myButton" onclick="window.location.href='index.html'">ok</button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const ticketNumberElement = document.getElementById("ticket-number");
+      const dateElement = document.getElementById("date");
+      const timeElement = document.getElementById("time");
+      const productsList = document.getElementById("products-list");
+
+      // Generate random ticket number
+      const ticketNumber = Math.floor(Math.random() * 10000);
+      ticketNumberElement.innerHTML = ticketNumber;
+
+      // Get current date and time
+      const now = new Date();
+      const date = now.toLocaleDateString();
+      const time = now.toLocaleTimeString( [], { hour: "2-digit", minute: "2-digit" } );
+
+      dateElement.innerHTML = date;
+      timeElement.innerHTML = time;
+
+  // Define the products
+  const products = [
+    { name: "samosa", price: "Rs.10.00" },
+    { name: "vada", price: "Rs.10.00" }
+  ];
+
+  // Add products to the list
+  products.forEach((product) => {
+    const li = document.createElement("li");
+    li.innerHTML = `${product.name}: ${product.price}`;
+    productsList.appendChild(li);
+  });
+</script>
+</body>
+</html> 
